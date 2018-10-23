@@ -1,0 +1,185 @@
+{% extends "nav.html" %}
+{% block title %} Select Options{% endblock %}
+{% block content %}
+<br>
+	<div class=row>
+	<div class="col-sm-12">
+    <a href="store"><button type="button" class="btn btn-warning" style="height:30px; padding-top:4px"><i class="fa fa-arrow-left"></i> Go Back</button></a>
+	</div>
+	</div>
+	
+	<div class="row">
+	{% if error %}
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+        <p class="alert alert-danger" role="alert"><strong>Error:</strong> {{ error|safe }}</p>
+		</div>
+		<div class="col-sm-3"></div>
+      {% endif %}
+	</div>
+	
+	
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-6">
+	<h3>{{ product_name }}</h3>
+	<br>SKU: {{ sku }}
+	{% if variable_price %}
+	{% else %}
+	<br>${{ price }}
+	{% endif %}
+	
+	</div>
+	<div class="col-sm-2"></div>
+	</div>
+	
+
+	<br>
+	<form class="form-horizontal" role="form" action="" method="post">
+	
+	{% if variable_price %}
+	<div class="row">
+	<div class="col-sm-3"></div>
+	
+	
+		<div class="form-group">
+			  
+		<label class="control-label col-sm-2" for="amount">Tution Amount*:   &nbsp&nbsp$</label>
+		<div class="col-sm-2">
+		<input type="number" min="0.01" step="0.01" class="form-control" id="amount" name=amount required>
+		</div>
+		</div>
+	
+	<div class="col-sm-5"></div>
+	</div>
+	
+	<br>
+	
+	
+	<div class="row">
+	<div class="col-sm-5"></div>
+	<div class="col-sm-3">
+	{% for student in students %}
+		
+		<div class="form-group"> 
+				
+				  <div class="checkbox">
+					<label><input type="checkbox" id="checked_students" name="checked_students" value="{{student.sis_id}}"> {{student.name}}</label>
+				  </div>
+			
+		  </div>
+		
+	  
+	  {% endfor %}
+	</div>
+	<div class="col-sm-4"></div>
+	</div>
+	
+	
+	{% else %}
+	<div class="row">
+	<div class="col-sm-3"></div>
+	
+	
+		<div class="form-group">
+			  
+		<label class="control-label col-sm-2" for="stu">Student:</label>
+		<div class="col-sm-2">
+		<select class="form-control" id="stu" name=stu required>
+		<option disabled selected hidden value="">Select A Student</option>
+		{% for student in students %}
+
+		<option value="{{student.sis_id}}">{{student.name}}</option>
+		{% endfor %}
+		
+		</select>
+		</div>
+		</div>
+	
+	<div class="col-sm-5"></div>
+	</div>
+	{% endif %}
+	
+	
+	
+	<div class="row">
+	<div class="col-sm-3"></div>
+	
+	
+	<div class="form-group">
+			  
+	<label class="control-label col-sm-2" for="year">Academic Year:</label>
+	<div class="col-sm-2">
+	<select class="form-control" id="year" name=year required>
+	{% for year in years %}
+
+		<option value="{{year}}">{{year}}</option>
+		{% endfor %}
+	
+	</select>
+	
+	</div>
+	</div>
+	<div class="col-sm-5"></div>
+	</div>
+	
+	{% if edp_options %}
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="form-group">
+			  
+	<label class="control-label col-sm-2" for="edp">EDP Session:</label>
+	<div class="col-sm-2">
+	<select class="form-control" id="edp" name=edp required>
+	<option value="Session I - 5 days">Session I - 5 days</option>
+	<option value="Session I - 3 days">Session I - 3 days (for 3 day pre only)</option>
+	<option value="Session I - 2 days">Session I - 2 days (for 2 day pre only)</option>
+	
+	<option value="Sessions I & II - 5 days">Sessions I & II - 5 days</option>
+	<option value="Sessions I & II - 3 days">Sessions I & II - 3 days (for 3 day pre only)</option>
+	<option value="Sessions I & II - 2 days">Sessions I & II - 2 days (for 2 day pre only)</option>
+	
+	</select>
+	
+	</div>
+	</div>
+	<div class="col-sm-5"></div>
+	</div>
+	{% endif %}
+
+	{% if message %}
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">	<p class="alert alert-info" role="info">{{message}}</p></div>
+	<div class="col-sm-4"></div>
+	</div>
+	{% endif %}
+	
+	<br>
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+	<div class="form-group"> 
+		  <button type="submit" class="btn btn-success">Add to Cart</button>
+		</div>
+	  </div>
+	<div class="col-sm-4"></div>
+	</div>
+	</form>
+	
+
+<script language="javascript" type="text/javascript">
+$("form").submit(function() {
+//alert('test');
+if ($('#loading_image').length == 0) { //is the image on the form yet?
+                // add it just before the submit button
+$(':submit').after('<img src={{ url_for('static', filename='images/ajax-loader.gif') }} style="display: none;" alt="loading" id="loading_image">')
+}
+    $('#loading_image').show(); // show the animated image    
+    $(':submit',this).attr('disabled','disabled'); // disable double submits
+    return true; // allow regular form submission
+});
+</script>
+
+	
+{% endblock %}

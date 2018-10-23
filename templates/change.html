@@ -1,0 +1,95 @@
+{% extends "nav.html" %}
+{% block title %} Change Payment Method{% endblock %}
+{% block content %}
+    <h1>Change Payment Method</h1><a href="home"><button type="button" class="btn btn-warning" style="height:30px; padding-top:4px"><i class="fa fa-arrow-left"></i> Go Back</button></a>
+
+	<br>
+	<div class="row">
+	{% if error %}
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+        <p class="alert alert-danger" role="alert"><strong>Error:</strong> {{ error|safe }}</p>
+		</div>
+		<div class="col-sm-3"></div>
+      {% endif %}
+	</div>
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+	
+	<h4><strong class="col-sm-offset-1 col-sm-11">Payment Method for {{student_name}}</strong></h4>
+
+	<br><br>
+	<form class="form-horizontal" role="form" action="" method="post">
+	<div class="form-group account_section">
+		<label for="pMethod" class="control-label col-sm-offset-1 col-sm-4">Payment Method:</label>
+		<div class="col-sm-5">
+			<select class="form-control account_input" id="pMethod" name=pMethod required>
+				{% for pay_option in pay_methods %}
+				<option value="{{pay_option.token}}">{{pay_option.name}} ({{pay_option.account}})</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+
+	<div class="form-group">
+		  
+			  <label class="control-label col-sm-offset-1 col-sm-4" for="pay_date">Auto-Pay Day of the Month:</label>
+			  <div class="col-sm-2">
+			  <select class="form-control" id="pay_date" name=pay_date required>
+				<option value="25">25th</option>
+				<option value="10">10th</option>
+			  </select>
+			</div>
+	  </div>
+	  <p class="alert alert-warning col-sm-offset-2 col-sm-10" role="alert">Your tuition will be auto-debited on the date selected monthly.</p>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+	  <br>
+
+	<div class="form-group">
+		<label class="control-label col-sm-3" for="eSig">Electronic Signature:</label>
+		<div class="col-sm-6"> 
+		  <input type="text" class="form-control" id="eSig" name=eSig placeholder="Sign your name" autocomplete="signature" required>
+		</div>
+		<div class="col-sm-3"></div>
+	  </div>
+	  
+	  
+	  <div class="form-group"> 
+				<div class="col-sm-offset-1 col-sm-4">
+				  <div class="checkbox">
+					<label><input type="checkbox" name=accept id="accept" value="accept" required> I accept the <a target="_blank" href="/terms">terms and agreements</a>.</label>
+				  </div>
+				</div>
+		</div>
+
+	  <div class="form-group"> 
+		<div class="col-sm-offset-1 col-sm-8">
+		  <button type="submit" class="btn btn-success">Submit</button>
+		</div>
+	  </div>
+	</form>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	
+
+
+<script language="javascript" type="text/javascript">
+$("form").submit(function() {
+//alert('test');
+if ($('#loading_image').length == 0) { //is the image on the form yet?
+                // add it just before the submit button
+$(':submit').after('<img src={{ url_for('static', filename='images/ajax-loader.gif') }} style="display: none;" alt="loading" id="loading_image">')
+}
+    $('#loading_image').show(); // show the animated image    
+    $(':submit',this).attr('disabled','disabled'); // disable double submits
+    return true; // allow regular form submission
+});
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "nav.html" %}
+{% block title %} Autopay Setup{% endblock %}
+{% block content %}
+    <h1>Autopay Setup</h1>
+
+	<br>
+	
+	<ul class="nav nav-tabs"">
+	{% for student in students %}
+		{% if loop.index0 == 0%}
+			<li class="active">
+		{% else %}
+			<li>
+		{% endif %}
+		<a data-toggle="pill" href="#{{loop.index0}}">{{student.name}}</a></li>
+	{% endfor %}
+	</ul>
+	
+	
+	<div class="tab-content">
+	{% for student in students %}
+		{% if loop.index0 == 0%}
+			<div id="{{loop.index0}}" class="tab-pane fade in active">
+		{% else %}
+			<div id="{{loop.index0}}" class="tab-pane fade">
+		{% endif %}
+		<br>
+		<p>
+		<strong>student:</strong> {{student.name}}<br>
+		<strong>payment method:</strong> {{student.pay_type}} ({{student.card_num}}) <a href="add?id={{student.sis_id}}"><button type="button" class="btn btn-info" style="height:30px; padding-top:4px">Change</button></a><br>
+		<strong>day of the month:</strong> {{student.pay_date}}th<br>
+		<strong>account holder:</strong> {{student.card_name}}<br>
+		</p>
+		</div>
+	{% endfor %}
+	</div>
+
+
+	
+{% endblock %}

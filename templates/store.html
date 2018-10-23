@@ -1,0 +1,102 @@
+{% extends "nav.html" %}
+{% block title %} Store{% endblock %}
+{% block content %}
+<br>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+		<ul class="nav navbar-nav">
+		  <li><a href="home">Autopay Setup</a></li>
+		  <li class="active"><a href="store">Payments</a></li>
+		  
+		</ul>
+		<div style="float: right; padding-top:10px;">
+		<a href="cart"><button type="button" class="btn btn-default btn-sm" >
+          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart ({{cart_size}})
+        </button></a>
+		</div>
+	  </div>
+	</nav>
+    
+	
+	
+	<div class="row">
+	
+	<div class="col-sm-2"></div>
+	<div class="col-sm-3">
+	<h3>7:40 AM Bus OSP to HNC</h3>
+	<br>$500.00
+	<br><a href='select?sku=BUS0043'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+	
+	
+	
+	<div class="col-sm-3">
+	<h3>3:10 PM Bus OSP to HNC</h3>
+	<br>$500.00
+	<br><a href='select?sku=BUS0040'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+	
+	
+	
+	<div class="col-sm-3">
+	<h3>3:40 PM Bus HNC to OSP</h3>
+	<br>$500.00
+	<br><a href='select?sku=BUS0041'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+
+	</div>
+	
+	<hr>
+	
+	<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-3">
+	<h3>4:30 PM Bus OSP to HNC</h3>
+	<br>$500.00
+	<br><a href='select?sku=BUS0042'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+	
+
+	<div class="col-sm-3">
+	<h3>5:00 PM Bus HNC to OSP</h3>
+	<br>$500.00
+	<br><a href='select?sku=BUS0051'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+	
+
+	<div class="col-sm-3">
+	<h3>5:30 PM Bus OSP to HNC</h3>
+	<br>$500.00
+	<br><a href='select?sku=BUS0050'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+
+	</div>
+	
+	<hr>
+
+	
+	<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-3">
+	<h3>Extended Day Late Fee</h3>
+	<br>$30.00
+	<br><a href='select?sku=MF0070'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+	
+
+	<div class="col-sm-3">
+	<h3>Extended Day Registration</h3>
+	<br>$200.00
+	<br><a href='select?sku=EC0050'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+
+
+	<div class="col-sm-3">
+	<h3>Tuition Payment</h3>
+	<br>
+	<br><a href='select?sku=TUI-01'><button type="submit" class="btn btn-success" name=add>Select Options</button></a>
+	</div>
+
+	</div>
+	
+{% endblock %}

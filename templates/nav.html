@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+		
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>FXW - {% block title %}{% endblock %}</title>
+		
+
+        <!-- Bootstrap core CSS -->
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <!-- Custom styles for this template -->
+        <link href="/static/css/dashboard.css" rel="stylesheet">
+
+		<link href="/static/datepicker/css/datepicker.css" rel="stylesheet">
+		<link href="/static/css/jquery.dynatable.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		
+		<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="{{ url_for('static', filename='assets/js/ie10-viewport-bug-workaround.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='datepicker/js/bootstrap-datepicker.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.dynatable.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/json2html.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/jquery.json2html.js') }}"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+
+		
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+		
+
+		
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+	
+    </head>
+    <body style="overflow-x: hidden;">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: #F2F2F2; border-bottom: 1px solid #eee;">
+            <div class="container-fluid"  style="height:70px;">
+                <div class="navbar-header" style="padding-top:0px;">
+                    
+                    <a class="navbar-brand" href="home" style="color:#000000;" onmouseover="this.style.color='gray'" onmouseout="this.style.color='black'";>
+						<i><img src="/static/FXW logo.jpg" alt="fxw" height="42" width="42"></i> </a>
+						
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <div class="navbar-brand" style="padding-top:20px; color:#000000">Welcome, {{user}}</div>
+                        </li>
+                        <li><div class="navbar-brand">
+                            <a href="logout">
+                                <button type="button" class="btn btn-danger" style="height:30px; padding-top:4px">Logout</button>
+                            </a></div>
+                        </li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <form class="navbar-form navbar-right" style="display: block;">
+				</form>
+                </div>
+				
+				
+				
+				
+            </div>
+			
+			
+			
+        </div>
+        <div class="container-fluid" style="margin-top: 10px;">
+
+				{% block content %}{% endblock %}
+
+        </div>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+		
+		
+
+		
+		
+    </body>
+</html>

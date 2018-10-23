@@ -1,0 +1,51 @@
+{% extends "nav.html" %}
+{% block title %} Shopping Cart{% endblock %}
+{% block content %}
+<br>
+	<div class=row>
+	<div class="col-sm-12">
+    <a href="store"><button type="button" class="btn btn-warning" style="height:30px; padding-top:4px"><i class="fa fa-arrow-left"></i> Go Back</button></a>
+	</div>
+	</div>
+	{% if cart_contents %}
+	<div class=row>
+	<div class="col-sm-12">
+	<h3>Shopping Cart</h3><br>
+	<h4>Total: {{total}}</h4><br>
+	</div>
+	</div>
+	<form class="form-horizontal" role="form" action="" method="post">
+	{% for item in cart_contents %}
+	<div class="row">
+	<div class="col-sm-4"></div>
+		<div class="col-sm-3">
+		{{item.name}} - {{item.sku}}<br>
+		For: {{item.student_name}}<br>
+		{{item.display_amount}}
+		
+		</div>
+		<div class="col-sm-1">
+		<button type="submit" class="btn btn-danger" name="btn" value="{{item.cart_id}}"><span class="glyphicon glyphicon-trash" style="padding-right:2px;"></span></button>
+		</div>
+	<div class="col-sm-4"></div>
+	
+	</div>
+	<hr>
+	{% endfor %}
+	</form>
+	
+	<br><br>
+	<div class="row">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+		<a href="checkout"><button type="button" class="btn btn-success" style="height:30px; padding-top:4px; float:right;">Check Out <i class="fa fa-arrow-right"></i></button></a>
+	</div>
+	<div class="col-sm-4"></div>
+	</div>
+	
+	{% else %}
+	<br>
+	<h3>Cart is empty</h3>
+	{% endif %}
+	
+{% endblock %}

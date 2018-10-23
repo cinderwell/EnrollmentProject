@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>FXW Veracross Login</title>
+
+    
+	<script src="{{ url_for('static', filename='assets/js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+	<link href="static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+ <div class="container-fluid">
+
+<div class="row" style="padding-top:50px;">
+<div class="col-md-4"></div>
+  <div class="col-md-4" style='text-align: center;'><div class="navbar navbar-default" style="padding:5px;">
+		<br>
+		<i><img src="/static/FXW logo.jpg" alt="fxw" height="42" width="42"></i><br>
+      <h2>Please Login with your FXW Veracross Credentials</h2>
+      <br>
+	
+      <form action="" method="post">
+        <input type="text" class="form-control" tabindex=1 placeholder="Username" name="username" value="{{
+          request.form.username }}" style='width:300px; margin:auto;'>
+	<br>
+         <input type="password" class="form-control" tabindex=2 placeholder="Password" name="password" value="{{
+          request.form.password }}" style='width:300px; margin:auto;'>
+	<br>
+        <input class="btn btn-success" type="submit" tabindex=3 value="Login">
+      </form>
+      {% if error %}
+        <p class="alert alert-danger" role="alert"><strong>Error:</strong> {{ error }}</p>
+      {% endif %}
+
+</div></div>
+<div class="col-md-4"></div>
+</div></div>
+  </body>
+</html>

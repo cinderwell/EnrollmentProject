@@ -1,0 +1,61 @@
+{% extends "nav.html" %}
+{% block title %} Autopay Setup{% endblock %}
+{% block content %}
+<br>
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+		<ul class="nav navbar-nav">
+		  <li class="active"><a href="home">Autopay Setup</a></li>
+		  <li><a href="store">Payments</a></li>
+		</ul>
+	  </div>
+	</nav>
+	
+	<br>
+	{% if status %}
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
+        <p class="alert alert-success" role="alert">{{ status }}</p>
+		</div>
+		<div class="col-sm-3"></div>
+	</div>
+    {% endif %}
+
+	
+	
+	
+	{% for student in students %}
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+		<p>
+		<strong>student:</strong> {{student.name}}<br>
+		<strong>payment method:</strong> {{student.pay_type}} {% if student.card_num %}({{student.card_num}}){% endif %} <a href="add?id={{student.sis_id}}" data-toggle="tooltip" title="Add a new billing method"><button type="button" class="btn btn-success" style="height:30px; padding-top:4px">Add</button></a> 
+		{% if hasPayMethods %}<a href="change?id={{student.sis_id}}" data-toggle="tooltip" title="Change to another stored billing method"><button type="button" class="btn btn-info" style="height:30px; padding-top:4px">Switch</button></a>{% endif %}<br>
+		<strong>day of the month:</strong> {{student.pay_date}}{% if student.pay_date %}th{% endif %}<br>
+		<strong>account holder:</strong> {{student.card_name}}<br>
+		</p>
+		<hr size=2>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	{% endfor %}
+	
+	{% if hasPayMethods %}
+	<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-6">
+	<p class="alert alert-info" role="info">If your prefered method of payment already appears above, you don't need to make any changes.<br>To switch to another saved billing method, please use "Switch," otherwise use "Add."</p>
+	</div>
+	<div class="col-sm-3"></div>
+	</div>
+	{% endif %}
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
+	
+{% endblock %}
