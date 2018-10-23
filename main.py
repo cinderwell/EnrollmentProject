@@ -1265,9 +1265,6 @@ def index():
             username = temp_username.lower()
             user_par = username
             if(username):
-                if str(username) == 'mitchelld@fxw.org':
-                    user_pk = '9276'
-
                 User.add_sis_id(username,user_pk)
                 user = User(username)
                 login_user(user)
